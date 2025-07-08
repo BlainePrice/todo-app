@@ -51,3 +51,5 @@ Includes user authentication and supports creating, updating, and deleting tasks
 
     ```bash
     python -m run.py
+
+If errors arise with external imports ensure your venv interpreter is selected.

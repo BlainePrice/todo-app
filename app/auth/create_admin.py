@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from app.crud.database import SessionLocal
-from models.models import User
+from app.models.models import User
 from app.auth.auth import hash_password
 from dotenv import load_dotenv
 import os

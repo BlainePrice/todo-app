@@ -9,7 +9,7 @@ from starlette.middleware.sessions import SessionMiddleware
 from sqlalchemy.orm import Session
 from app.crud.database import get_db, init_db
 from app.auth.create_admin import create_admin
-from models.models import User, Todo, SupportTicket, SupportTicketMessage
+from app.models.models import User, Todo, SupportTicket, SupportTicketMessage
 from app.auth.auth import hash_password, verify_password
 from dotenv import load_dotenv
 from datetime import datetime, timezone
