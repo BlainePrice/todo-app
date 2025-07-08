@@ -24,11 +24,17 @@ Includes user authentication and supports creating, updating, and deleting tasks
    cd todo-app
 
 2. **Create and activate a virtual environment:**
-python -m venv venv
-source venv/bin/activate    # On Windows: venv\Scripts\activate
+
+    ```bash
+    python -m venv venv
+    source venv/bin/activate    # On Windows: venv\Scripts\activate
 
 3. **Install dependencies:**
-pip install -r requirements.txt
+
+    ```bash
+    pip install -r requirements.txt
 
 4. **Run the application:**
-python -m run.py
+
+    ```bash
+    python -m run.py
