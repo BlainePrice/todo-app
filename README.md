@@ -34,7 +34,20 @@ Includes user authentication and supports creating, updating, and deleting tasks
     ```bash
     pip install -r requirements.txt
 
-4. **Run the application:**
+4. **Create .env file**
+
+   ```bash
+   touch > .env   # On Windows: type nul  > .env
+
+5. **Add environment variables:**
+
+   ```bash
+   DATABASE_URL="sqlite:///./yourdb.db"
+   SECRET="your-secret-phrase"
+   ADMIN_USER="your-username"
+   ADMIN_PASS="your-password"
+
+5. **Run the application:**
 
     ```bash
     python -m run.py
