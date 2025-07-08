@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Submit a Support Ticket</h2>
+
+  {% if error %}
+    <div class="error">{{ error }}</div>
+  {% endif %}
+
+  <form method="post" class="todo-form">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" placeholder="Brief summary of your issue" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" placeholder="Describe your issue in detail" rows="5" required></textarea>
+
+    <input type="hidden" name="csrf_token" value="{{ request.session.get('csrf_token') }}">
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}

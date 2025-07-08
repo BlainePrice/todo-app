@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/static/admin.css" />
+  <script src="/static/admin.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Admin Dashboard</h1>
+    <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+  </header>
+
+  <section>
+    <h2>Users</h2>
+    <input type="text" id="userSearch" placeholder="Search Users by Username"/>
+    <table id="usersTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Admin</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ "Yes" if user.is_admin else "No" }}</td>
+          <td>
+            <a href="/admin/users/edit/{{ user.id }}">Edit</a> |
+            <a href="/admin/users/delete/{{ user.id }}" onclick="return confirm('Delete this user?');">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <button id="showMoreUsers" class="show-more">Show More</button>
+    <p id="noMoreUsers" style="display: none;">No more users to show.</p>
+  </section>
+
+  <section>
+  <h2>Todos</h2>
+  <input type="text" id="todoSearch" placeholder="Search Todos by Title"/>
+
+  <div id="todosWrapper">
+    <table id="todosTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Owner</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Completed</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for todo in todos %}
+        <tr class="{{ 'completed' if todo.completed else '' }}">
+          <td>{{ todo.id }}</td>
+          <td>{{ todo.owner.username if todo.owner else "Unknown" }}</td>
+          <td>{{ todo.title }}</td>
+          <td>{{ todo.description }}</td>
+          <td>{{ "✔️" if todo.completed else "❌" }}</td>
+          <td>
+            <a href="/admin/todos/edit/{{ todo.id }}">Edit</a> |
+            <a href="/admin/todos/delete/{{ todo.id }}" onclick="return confirm('Delete this todo?');">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <button id="showMoreTodos" class="show-more">Show More</button>
+    <p id="noMoreTodos" style="display: none;">No more todos to show.</p>
+  </div>
+</section>
+
+
+<section>
+  <h2>Support Tickets</h2>
+  <input type="text" id="ticketSearch" placeholder="Search Tickets by Title/User"/>
+  <table id="ticketsTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ticket in tickets %}
+      <tr>
+        <td>{{ ticket.id }}</td>
+        <td>{{ ticket.user.username }}</td>
+        <td>{{ ticket.title }}</td>
+        <td>{{ ticket.status }}</td>
+        <td>{{ ticket.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        <td>
+            <a href="/admin/support/{{ ticket.id }}">View</a> |
+            <a href="/admin/support/{{ ticket.id }}/delete">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+    <button id="showMoreTickets" class="show-more">Show More</button>
+    <p id="noMoreTickets" style="display: none;">No more tickets to show.</p>
+</section>

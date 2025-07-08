@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Todo App{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script src="/static/script.js" defer></script>
+</head>
+<body class="light-mode">
+  <div class="container">
+    <header>
+      <h1>{% block header %}Todo List{% endblock %}</h1>
+      <nav>
+        {% if request.session.get('user_id') %}
+            <a href="/support">Support</a>
+            <a href="/logout" class="logout">Logout</a>
+            {% if user and user.is_admin %}
+            <a href="/admin">Admin</a>
+            {% endif %}
+        {% endif %}
+        </nav>
+      <div class="top-controls">
+        <button id="theme-toggle" class="theme-toggle">Toggle Dark Mode</button>
+      </div>
+    </header>
+
+    {% if flash %}
+      <div class="flash">{{ flash }}</div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

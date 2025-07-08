@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+{% block header %}Create an Account{% endblock %}
+
+{% block content %}
+  {% if error %}
+    <div class="error" role="alert" aria-live="assertive">{{ error }}</div>
+  {% endif %}
+  <form method="post" action="/register" novalidate>
+    <input type="text" name="username" placeholder="Username" required autofocus autocomplete="username" />
+    <input type="password" name="password" placeholder="Password" required autocomplete="new-password" />
+    <input type="hidden" name="csrf_token" value="{{ request.session.get('csrf_token') }}">
+    <button type="submit">Register</button>
+  </form>
+  <p>Already have an account? <a href="/login">Log in</a></p>
+{% endblock %}

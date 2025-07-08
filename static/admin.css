@@ -1,0 +1,175 @@
+/* Root Theme Variables */
+:root {
+  --bg: #f9f9f9;
+  --card: #ffffff;
+  --text: #333333;
+  --accent: #4caf50;
+  --accent-hover: #388e3c;
+  --border: #dddddd;
+  --hover: #f1f8e9;
+  --link: #00e;
+  --visited: #551A8B;
+}
+
+[data-theme="dark"] {
+  --bg: #121212;
+  --card: #1e1e1e;
+  --text: #e0e0e0;
+  --accent: #4caf50;
+  --accent-hover: #66bb6a;
+  --border: #333333;
+  --hover: #1a1a1a;
+  --link: #4646ea;
+  --visited: #6e4b90;
+}
+
+/* Reset & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text);
+  transition: color 0.3s ease;
+}
+
+/* Sections */
+section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.3rem;
+  color: var(--accent);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+a {
+    color: var(--link)
+}
+
+a:visited{
+    color: var(--visited)
+}
+
+th, td {
+  padding: 0.7rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+tr.completed {
+  opacity: 0.6;
+  text-decoration: line-through;
+  background-color: #e8f5e9;
+}
+
+tr:hover {
+  background-color: var(--hover);
+}
+
+/* Forms & Inputs */
+input[type="text"] {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  width: 100%;
+  max-width: 320px;
+  font-size: 1rem;
+  background-color: var(--card);
+  color: var(--text);
+}
+
+/* Show More Button */
+.show-more {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.show-more:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Responsive Tables */
+@media (max-width: 600px) {
+  body {
+    margin: 1rem;
+    padding: 0.5rem;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem;
+  }
+
+  td {
+    padding-left: 50%;
+    position: relative;
+  }
+
+  td::before {
+    position: absolute;
+    left: 1rem;
+    width: 45%;
+    white-space: nowrap;
+    font-weight: bold;
+    content: attr(data-label);
+  }
+}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Your Todos{% endblock %}
+{% block header %}{{ user.username }}'s Todo List{% endblock %}
+
+{% block content %}
+  <form method="post" action="/todos" class="todo-form">
+    <label for="title">Task:</label>
+    <input type="text" id="title" name="title" placeholder="New task..." required />
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" placeholder="Description (optional)" />
+
+    <input type="hidden" name="csrf_token" value="{{ request.session.get('csrf_token') }}">
+    <button type="submit">Add</button>
+  </form>
+
+  <ul class="todo-list">
+    {% for todo in todos %}
+      <li class="todo-item {{ 'completed' if todo.completed }}">
+        <div class="todo-content">
+          <strong>{{ todo.title }}</strong>
+          <p>{{ todo.description }}</p>
+        </div>
+        <div class="todo-actions">
+          {% if not todo.completed %}
+            <a href="/complete/{{ todo.id }}">✅ Complete</a>
+          {% endif %}
+          <a href="/delete/{{ todo.id }}">🗑 Delete</a>
+        </div>
+      </li>
+    {% else %}
+      <li><em>No todos yet. Add one above!</em></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
